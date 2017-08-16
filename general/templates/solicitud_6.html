@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load bootstrap %}
+
+
+{% block title %}CRM | Solicitud única de cuentas {% endblock %}
+        
+{% block contenido %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+<script src="{% static 'plugins/select2/select2.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'plugins/select2/select2.min.css' %}">
+<link rel="stylesheet" href="{% static 'plugins/select2/select2-bootstrap.min.css' %}">
+
+
+
+<style>
+  .select2-container .select2-selection--single .select2-selection__rendered{
+    margin-top: 0px;
+  }
+  .nav-tabs-custom > .nav-tabs > li.active{
+    border-top-color:#00a65a;
+  }
+  .sub-style {
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    color: green;
+    font-size: 12;
+    font-weight: bold;
+  }
+  .loader {
+      display: none;
+      animation: spin 2s linear infinite;
+      position:   fixed;
+      z-index:    1000;
+      top:        0;
+      left:       0;
+      height:     100%;
+      width:      100%;
+      background: rgba( 255, 255, 255, .8 ) 
+                url('http://i.stack.imgur.com/FhHRx.gif') 
+                50% 50% 
+                no-repeat;
+          
+  }
+    .error{
+    background-color: #BC1010;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: white;
+    font-size: 11 px;
+    /*font-weight: bold;*/
+    margin-left: 12px;
+    margin-top: 6px;
+    position: relative;
+  }
+
+
+
+</style>
+
+<div class="box box-primary with-border">
+        <div class="box-body">
+        <p class="pull-right">Fecha: {% now 'd-m-Y' %}</p>
+        <h5 class="text-center sub-style">Solicitud de Producto (Persona natural)... Ingresar personas dependientes </h5><hr>  
+         
+         
+          
+          <form method="post" accept-charset="utf-8" id="formulario" class="form-horizontal" enctype='multipart/form-data' > 
+            {% csrf_token %}  
+
+         
+      
+            <div class="row">
+              <div class="col-sm-5">
+               {{form.nombre_completo|bootstrap_horizontal:'col-xs-5'}}               
+              </div>             
+               <div class="col-sm-5">
+              {{form.parentesco|bootstrap_horizontal:'col-xs-5'}} 
+              </div>              
+            </div>
+
+            <div class="row">
+              <div class="col-sm-5">
+               {{form.identidad|bootstrap_horizontal:'col-xs-5'}}               
+              </div>             
+               <div class="col-sm-5">
+              {{form.tipo_id|bootstrap_horizontal:'col-xs-5'}} 
+              </div>              
+            </div> <hr>  <hr>             
+            
+                                           
+
+ 
+            
+              <div class="col-sm-12">
+                 <button type="submit" class="btn btn-success btn-md pull-right " id='btn-guardar'> Siguiente <i class="glyphicon glyphicon-arrow-right" ></i></button>             
+               
+             </div>
+
+
+            </div>                                   
+           
+                            
+               
+      </form>
+
+                 
+     </div>
+                
+</div> 
+
+<script>
+
+
+</script>
+
+  
+{% endblock %}  
