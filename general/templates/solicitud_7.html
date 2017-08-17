@@ -12,9 +12,7 @@
 <script src="{% static 'plugins/select2/select2.min.js' %}"></script>
 <link rel="stylesheet" href="{% static 'plugins/select2/select2.min.css' %}">
 <link rel="stylesheet" href="{% static 'plugins/select2/select2-bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'plugins/bootstrap-datepicker/css/bootstrap-datepicker.css' %}">
-<script src="{% static 'plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
-<script src="{% static 'plugins/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js' %}"></script>
+
 
 
 <style>
@@ -84,9 +82,9 @@
             <div class="row">
               <div class="col-sm-5">
                 {{form.familiar|bootstrap_horizontal:'col-xs-5'}}           
-              </div>             
+              </div>         
                         
-            </div>   
+            </div>   <hr>
 
             <div class="row">
               <div class="col-sm-5">
@@ -101,9 +99,9 @@
             <div class="row">
               <div class="col-sm-5">
                 {{form.familiar|bootstrap_horizontal:'col-xs-5'}}           
-              </div>             
+              </div><br>            
                         
-            </div>   
+            </div>   <hr>
 
             <div class="row">
               <div class="col-sm-5">
@@ -127,6 +125,7 @@
  
             
               <div class="col-sm-12">
+               <a href="{% url 'editar_6' solicitud.id_solicitud solicitud.cant_personas %}" class="btn btn-primary btn-large"><i class="glyphicon glyphicon-arrow-left"></i> Atrás</a>
                  <button type="submit" class="btn btn-success btn-md pull-right " id='btn-guardar'> Siguiente <i class="glyphicon glyphicon-arrow-right" ></i></button>             
                
              </div>
@@ -146,6 +145,17 @@
 <script>
 
 
+  $(document).ready(function(){
+
+    $('input[name=nombre_completo]').attr('name', 'nombre_completo[]')
+    $('input[name=telefono]').attr('name', 'telefono[]')
+    $('select[name=familiar]').attr('name', 'familiar[]')
+  
+
+  });
+
+
+  
 </script>
 
   

@@ -78,6 +78,7 @@ CARGO_PUBLICO = (
 	)
 
 FAMILIAR = (
+	('','---------'),
 	(True, 'Si'),
 	(False, 'No'),
 	)
@@ -89,6 +90,7 @@ TITULAR = (
 
 
 FIRMA = (
+
 	(True, 'Si'),
 	(False, 'No'),
 	)
@@ -130,6 +132,12 @@ class SolicitudForm(ModelForm):
 	comerciante_individual = forms.ChoiceField(widget=RadioSelect, choices=COMERC_INDIVIDUAL, required=False)
 	tipo_identificacion = forms.ChoiceField(choices=TIPO_IDENTIFICACION, label='Tipo documento de identidad', required=False)
 	nivel_ingresos_smmv = forms.ChoiceField(choices=NivelIngresosSMMV, label='Nivel aproximado de ingresos, según cantidad de SMMV', required=False)
+	nivel_educativo = forms.ChoiceField(choices=NIVEL_EDUCATIVO, required=False)
+	profesion = forms.ChoiceField(choices=PROFESION, label='Profesión', required=False)
+	comerciante_individual = forms.ChoiceField(widget=RadioSelect, choices=COMERC_INDIVIDUAL, required=False)
+	nivel_ingresos_smmv = forms.ChoiceField(choices=NivelIngresosSMMV, label='Nivel aproximado de ingresos, según cantidad de SMMV ', required=False)
+	cargo_publico = forms.ChoiceField(widget=RadioSelect, choices=CARGO_PUBLICO, required=False)
+
 
 
 	class Meta:
@@ -148,7 +156,7 @@ class SolicitudForm(ModelForm):
 		'direccion_detallada': ('Dirección detallada'),
 		'telefono2': ('Teléfono 2'),
 		'correo_electronico': ('Correo electrónico'),
-		'profesion': ('Profesión'),
+		
 		'cod_pais_residencia': ('En caso de ser extranjero, país de residencia'),
 		'cod_actividad_economica': ('Actividad económica'),
 		'nombre_empresa': ('Nombre empresa en la que labora'),
@@ -174,16 +182,20 @@ class SolicitudForm(ModelForm):
 
 class DependienteForm(ModelForm):
 
+	tipo_id = forms.ChoiceField(choices=TIPO_IDENTIFICACION, label='Tipo de identificación', required=False)
+	parentesco = forms.ChoiceField(choices=Parentesco, required=False)
+
+
 	class Meta:
 		model = Dependiente
 		fields = "__all__"
 		exclude = []
-		labels = { 'tipo_id': ('Tipo Identificación'),}
+		labels = {}
 
 
 class ReferenciaForm(ModelForm):
 
-	familiar = forms.ChoiceField(widget=RadioSelect, choices=FAMILIAR, required=False)
+	familiar = forms.ChoiceField(choices=FAMILIAR, required=False)
 
 	class Meta:
 		model = Referencia
@@ -192,9 +204,9 @@ class ReferenciaForm(ModelForm):
 		labels = { 'telefono': ('Teléfono'), }
 
 
-class BeneficiarioForm(ModelForm):
-
+class BeneficiarioForm(ModelForm):	
 	tipo_id = forms.ChoiceField(choices=TIPO_IDENTIFICACION, label='Tipo de identificación', required=False)
+	parentesco = forms.ChoiceField(choices=Parentesco, required=False)
 
 	class Meta:
 		model = Beneficiario

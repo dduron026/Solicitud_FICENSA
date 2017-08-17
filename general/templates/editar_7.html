@@ -61,70 +61,40 @@
 
 <div class="box box-primary with-border">
         <div class="box-body">
-        <p class="pull-right">Fecha: {% now 'd-m-Y' %}</p>
-        <h5 class="text-center sub-style">Solicitud de Producto (Persona natural) </h5><hr>        
+       
+        <h5 class="text-center sub-style">Solicitud de Producto (Persona natural) </h5><br>   
+        <h5 class="text-center sub-style">Referencias Bancarias, comerciales o personales </h5> <hr>   
           
           <form method="post" accept-charset="utf-8" id="formulario" class="form-horizontal" enctype='multipart/form-data' > 
-            {% csrf_token %}          
+            {% csrf_token %}       
          
-      
+            {% for referencia in referencias %}       
+
             <div class="row">
               <div class="col-sm-5">
-               {{form.estado_civil|bootstrap_horizontal:'col-xs-5'}}               
+                {{referencia.nombre_completo|bootstrap_horizontal:'col-xs-5'}}           
               </div>             
                <div class="col-sm-5">
-               {{form.sexo|bootstrap_horizontal:'col-xs-5'}}   
+               {{referencia.telefono|bootstrap_horizontal:'col-xs-5'}} 
+                
               </div>              
             </div>
 
             <div class="row">
               <div class="col-sm-5">
-               {{form.nombre_conyuge|bootstrap_horizontal:'col-xs-5'}}               
+                {{referencia.familiar|bootstrap_horizontal:'col-xs-5'}}           
               </div>             
-               <div class="col-sm-5">
-               {{form.tipo_identificacion|bootstrap_horizontal:'col-xs-5'}}   
-              </div>              
-            </div>
+                        
+            </div>    <hr>     
 
-            <div class="row">
-              <div class="col-sm-5">
-               {{form.rtn|bootstrap_horizontal:'col-xs-5'}}               
-              </div>             
-               <div class="col-sm-5">
-               {{form.direccion_detallada|bootstrap_horizontal:'col-xs-5'}}   
-              </div>              
-            </div>      
+            {% endfor %}  
+     
+                                           
 
-            <div class="row">
-              <div class="col-sm-5">
-               {{form.cod_depto_direccion|bootstrap_horizontal:'col-xs-5'}}               
-              </div>             
-               <div class="col-sm-5">
-               {{form.cod_mun_direccion|bootstrap_horizontal:'col-xs-5'}}   
-              </div>              
-            </div> 
+ 
             
-            <div class="row">
-              <div class="col-sm-5">
-               {{form.cod_col_direccion|bootstrap_horizontal:'col-xs-5'}}               
-              </div>             
-               <div class="col-sm-5">
-               {{form.referencia|bootstrap_horizontal:'col-xs-5'}}   
-              </div>              
-            </div>  
-            
-            <div class="row">
-              <div class="col-sm-5">
-               {{form.casa|bootstrap_horizontal:'col-xs-5'}}               
-              </div>             
-               <div class="col-sm-5">
-               {{form.telefono_casa|bootstrap_horizontal:'col-xs-5'}}   
-              </div>              
-            </div>   <hr>      
-
-
               <div class="col-sm-12">
-              <a href="{% url 'editar_1' solicitud.id_solicitud  %}" class="btn btn-primary btn-large"><i class="glyphicon glyphicon-arrow-left"></i> Atrás</a>
+               <a href="{% url 'editar_6' solicitud.id_solicitud solicitud.cant_personas  %}" class="btn btn-primary btn-large"><i class="glyphicon glyphicon-arrow-left"></i> Atrás</a>
                  <button type="submit" class="btn btn-success btn-md pull-right " id='btn-guardar'> Siguiente <i class="glyphicon glyphicon-arrow-right" ></i></button>             
                
              </div>
@@ -144,6 +114,17 @@
 <script>
 
 
+  $(document).ready(function(){
+
+    $('input[name=nombre_completo]').attr('name', 'nombre_completo[]')
+    $('input[name=telefono]').attr('name', 'telefono[]')
+    $('select[name=familiar]').attr('name', 'familiar[]')
+  
+
+  });
+
+
+  
 </script>
 
   

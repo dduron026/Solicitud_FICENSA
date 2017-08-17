@@ -61,70 +61,50 @@
 
 <div class="box box-primary with-border">
         <div class="box-body">
-        <p class="pull-right">Fecha: {% now 'd-m-Y' %}</p>
-        <h5 class="text-center sub-style">Solicitud de Producto (Persona natural) </h5><hr>        
+   
+        <h5 class="text-center sub-style">Solicitud de Producto (Persona natural)</h5> 
+        <h5 class="text-center sub-style">Beneficiarios de la cuenta</h5><hr>  
+         
+         
           
           <form method="post" accept-charset="utf-8" id="formulario" class="form-horizontal" enctype='multipart/form-data' > 
-            {% csrf_token %}          
+            {% csrf_token %}  
+
          
-      
+            {%  for beneficiario in beneficiarios %}
             <div class="row">
               <div class="col-sm-5">
-               {{form.estado_civil|bootstrap_horizontal:'col-xs-5'}}               
+               {{beneficiario.nombre_completo|bootstrap_horizontal:'col-xs-5'}}               
               </div>             
                <div class="col-sm-5">
-               {{form.sexo|bootstrap_horizontal:'col-xs-5'}}   
+              {{beneficiario.identidad|bootstrap_horizontal:'col-xs-5'}} 
               </div>              
             </div>
 
             <div class="row">
               <div class="col-sm-5">
-               {{form.nombre_conyuge|bootstrap_horizontal:'col-xs-5'}}               
+               {{beneficiario.parentesco|bootstrap_horizontal:'col-xs-5'}}               
               </div>             
                <div class="col-sm-5">
-               {{form.tipo_identificacion|bootstrap_horizontal:'col-xs-5'}}   
-              </div>              
-            </div>
-
-            <div class="row">
-              <div class="col-sm-5">
-               {{form.rtn|bootstrap_horizontal:'col-xs-5'}}               
-              </div>             
-               <div class="col-sm-5">
-               {{form.direccion_detallada|bootstrap_horizontal:'col-xs-5'}}   
-              </div>              
-            </div>      
-
-            <div class="row">
-              <div class="col-sm-5">
-               {{form.cod_depto_direccion|bootstrap_horizontal:'col-xs-5'}}               
-              </div>             
-               <div class="col-sm-5">
-               {{form.cod_mun_direccion|bootstrap_horizontal:'col-xs-5'}}   
+              {{beneficiario.tipo_id|bootstrap_horizontal:'col-xs-5'}} 
               </div>              
             </div> 
             
             <div class="row">
               <div class="col-sm-5">
-               {{form.cod_col_direccion|bootstrap_horizontal:'col-xs-5'}}               
-              </div>             
-               <div class="col-sm-5">
-               {{form.referencia|bootstrap_horizontal:'col-xs-5'}}   
-              </div>              
-            </div>  
+               {{beneficiario.porcentaje|bootstrap_horizontal:'col-xs-5'}}               
+              </div>               
+            </div> <hr>   
+            {%  endfor  %}
+
+
+
+                                           
+
+ 
             
-            <div class="row">
-              <div class="col-sm-5">
-               {{form.casa|bootstrap_horizontal:'col-xs-5'}}               
-              </div>             
-               <div class="col-sm-5">
-               {{form.telefono_casa|bootstrap_horizontal:'col-xs-5'}}   
-              </div>              
-            </div>   <hr>      
-
-
               <div class="col-sm-12">
-              <a href="{% url 'editar_1' solicitud.id_solicitud  %}" class="btn btn-primary btn-large"><i class="glyphicon glyphicon-arrow-left"></i> Atrás</a>
+               <a href="{% url 'editar_8' solicitud.id_solicitud  %}" class="btn btn-primary btn-large"><i class="glyphicon glyphicon-arrow-left"></i> Atrás</a>
                  <button type="submit" class="btn btn-success btn-md pull-right " id='btn-guardar'> Siguiente <i class="glyphicon glyphicon-arrow-right" ></i></button>             
                
              </div>
@@ -142,6 +122,16 @@
 </div> 
 
 <script>
+
+$(document).ready(function(){
+
+    $('input[name=nombre_completo]').attr('name', 'nombre_completo[]')
+    $('input[name=identidad]').attr('name', 'identidad[]')
+    $('select[name=parentesco]').attr('name', 'parentesco[]') 
+    $('select[name=tipo_id]').attr('name', 'tipo_id[]')
+    $('input[name=porcentaje]').attr('name', 'porcentaje[]') 
+
+  });
 
 
 </script>

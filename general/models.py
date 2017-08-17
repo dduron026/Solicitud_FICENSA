@@ -36,6 +36,11 @@ class Colonia(models.Model):
 		managed = False
 		db_table = 'Sol].[Colonias'
 
+	def __unicode__(self):
+		return self.descripcion_colonia		
+
+
+
 
 class Departamento(models.Model):
 	cod_departamento = models.AutoField(db_column='CodDepartamento', primary_key=True)  # Field name made lowercase.
@@ -45,6 +50,9 @@ class Departamento(models.Model):
 	class Meta:
 		managed = False
 		db_table = 'Sol].[Departamentos'
+
+	def __unicode__(self):
+		return self.descripcion_depto		
 
 
 class Dependiente(models.Model):
@@ -81,6 +89,9 @@ class Municipio(models.Model):
 		managed = False
 		db_table = 'Sol].[Municipios'
 
+	def __unicode__(self):
+		return self.descripcion_municipio		
+
 
 class Pais(models.Model):
 	cod_pais = models.AutoField(db_column='CodPais', primary_key=True)  # Field name made lowercase.
@@ -89,6 +100,9 @@ class Pais(models.Model):
 	class Meta:
 		managed = False
 		db_table = 'Sol].[Paises'
+
+	def __unicode__(self):
+		return self.descripcion_pais
 
 
 class Referencia(models.Model):
@@ -105,6 +119,7 @@ class Referencia(models.Model):
 
 class Solicitud(models.Model):
 	id_solicitud = models.AutoField(db_column='IdSolicitud', primary_key=True)  # Field name made lowercase.
+	cod_vista = models.IntegerField(db_column='CodVista', blank=True, null=True)
 	producto = models.CharField(db_column='Producto', max_length=1, blank=True, null=True)  # Field name made lowercase.
 	moneda = models.CharField(db_column='Moneda', max_length=1, blank=True, null=True)  # Field name made lowercase.
 	titular = models.NullBooleanField(db_column='Titular')  # Field name made lowercase.
@@ -112,7 +127,7 @@ class Solicitud(models.Model):
 	estado = models.IntegerField(db_column='Estado', blank=True, null=True)  # Field name made lowercase.
 	identidad = models.CharField(db_column='Identidad', max_length=13, blank=True, null=True)  # Field name made lowercase.
 	nombre_completo = models.CharField(db_column='NombreCompleto', max_length=100, blank=True, null=True)
-	fecha_nacimiento = models.CharField(db_column='FechaNacimiento', max_length=10, blank=True, null=True)  # Field name made lowercase.
+	fecha_nacimiento = models.DateField(db_column='FechaNacimiento', blank=True, null=True)  # Field name made lowercase.
 	cod_pais_nacimiento = models.ForeignKey(Pais, models.DO_NOTHING, db_column='CodPaisNacimiento', blank=True, null=True)  # Field name made lowercase.
 	cod_depto_nacimiento = models.ForeignKey(Departamento, models.DO_NOTHING, db_column='CodDeptoNacimiento', related_name='CodDeptoNacimiento_depto', blank=True, null=True)  # Field name made lowercase.
 	cod_municipio = models.ForeignKey(Municipio, models.DO_NOTHING, db_column='CodMunicipio', related_name='CodMunicipio_muni', blank=True, null=True)  # Field name made lowercase.

@@ -94,16 +94,88 @@
               <div class="col-sm-5">
                {{form.porcentaje|bootstrap_horizontal:'col-xs-5'}}               
               </div>               
-            </div>                       
-          
+            </div> <hr>   
 
-  <hr>             
+
+                        <div class="row">
+              <div class="col-sm-5">
+               {{form.nombre_completo|bootstrap_horizontal:'col-xs-5'}}               
+              </div>             
+               <div class="col-sm-5">
+              {{form.identidad|bootstrap_horizontal:'col-xs-5'}} 
+              </div>              
+            </div>
+
+            <div class="row">
+              <div class="col-sm-5">
+               {{form.parentesco|bootstrap_horizontal:'col-xs-5'}}               
+              </div>             
+               <div class="col-sm-5">
+              {{form.tipo_id|bootstrap_horizontal:'col-xs-5'}} 
+              </div>              
+            </div> 
             
+            <div class="row">
+              <div class="col-sm-5">
+               {{form.porcentaje|bootstrap_horizontal:'col-xs-5'}}               
+              </div>               
+            </div> <hr> 
+
+
+                        <div class="row">
+              <div class="col-sm-5">
+               {{form.nombre_completo|bootstrap_horizontal:'col-xs-5'}}               
+              </div>             
+               <div class="col-sm-5">
+              {{form.identidad|bootstrap_horizontal:'col-xs-5'}} 
+              </div>              
+            </div>
+
+            <div class="row">
+              <div class="col-sm-5">
+               {{form.parentesco|bootstrap_horizontal:'col-xs-5'}}               
+              </div>             
+               <div class="col-sm-5">
+              {{form.tipo_id|bootstrap_horizontal:'col-xs-5'}} 
+              </div>              
+            </div> 
+            
+            <div class="row">
+              <div class="col-sm-5">
+               {{form.porcentaje|bootstrap_horizontal:'col-xs-5'}}               
+              </div>               
+            </div> <hr> 
+
+
+            <div class="row">
+              <div class="col-sm-5">
+               {{form.nombre_completo|bootstrap_horizontal:'col-xs-5'}}               
+              </div>             
+               <div class="col-sm-5">
+              {{form.identidad|bootstrap_horizontal:'col-xs-5'}} 
+              </div>              
+            </div>
+
+            <div class="row">
+              <div class="col-sm-5">
+               {{form.parentesco|bootstrap_horizontal:'col-xs-5'}}               
+              </div>             
+               <div class="col-sm-5">
+              {{form.tipo_id|bootstrap_horizontal:'col-xs-5'}} 
+              </div>              
+            </div> 
+            
+            <div class="row">
+              <div class="col-sm-5">
+               {{form.porcentaje|bootstrap_horizontal:'col-xs-5'}}               
+              </div>               
+            </div> <hr>   
                                            
 
  
             
               <div class="col-sm-12">
+               <a href="{% url 'editar_8' solicitud.id_solicitud  %}" class="btn btn-primary btn-large"><i class="glyphicon glyphicon-arrow-left"></i> Atrás</a>
                  <button type="submit" class="btn btn-success btn-md pull-right " id='btn-guardar'> Siguiente <i class="glyphicon glyphicon-arrow-right" ></i></button>             
                
              </div>
@@ -121,6 +193,16 @@
 </div> 
 
 <script>
+
+$(document).ready(function(){
+
+    $('input[name=nombre_completo]').attr('name', 'nombre_completo[]')
+    $('input[name=identidad]').attr('name', 'identidad[]')
+    $('select[name=parentesco]').attr('name', 'parentesco[]') 
+    $('select[name=tipo_id]').attr('name', 'tipo_id[]')
+    $('input[name=porcentaje]').attr('name', 'porcentaje[]') 
+
+  });
 
 
 </script>

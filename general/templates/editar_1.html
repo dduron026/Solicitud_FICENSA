@@ -12,7 +12,9 @@
 <script src="{% static 'plugins/select2/select2.min.js' %}"></script>
 <link rel="stylesheet" href="{% static 'plugins/select2/select2.min.css' %}">
 <link rel="stylesheet" href="{% static 'plugins/select2/select2-bootstrap.min.css' %}">
-
+<link rel="stylesheet" href="{% static 'plugins/bootstrap-datepicker/css/bootstrap-datepicker.css' %}">
+<script src="{% static 'plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js' %}"></script>
 
 
 <style>
@@ -70,61 +72,63 @@
       
             <div class="row">
               <div class="col-sm-5">
-               {{form.estado_civil|bootstrap_horizontal:'col-xs-5'}}               
+               {{form.producto|bootstrap_horizontal:'col-xs-5'}}                
               </div>             
                <div class="col-sm-5">
-               {{form.sexo|bootstrap_horizontal:'col-xs-5'}}   
+               {{form.moneda|bootstrap_horizontal:'col-xs-5'}}   
               </div>              
             </div>
 
             <div class="row">
               <div class="col-sm-5">
-               {{form.nombre_conyuge|bootstrap_horizontal:'col-xs-5'}}               
+               {{form.titular|bootstrap_horizontal:'col-xs-5'}}                
               </div>             
                <div class="col-sm-5">
-               {{form.tipo_identificacion|bootstrap_horizontal:'col-xs-5'}}   
-              </div>              
-            </div>
-
-            <div class="row">
-              <div class="col-sm-5">
-               {{form.rtn|bootstrap_horizontal:'col-xs-5'}}               
-              </div>             
-               <div class="col-sm-5">
-               {{form.direccion_detallada|bootstrap_horizontal:'col-xs-5'}}   
-              </div>              
-            </div>      
-
-            <div class="row">
-              <div class="col-sm-5">
-               {{form.cod_depto_direccion|bootstrap_horizontal:'col-xs-5'}}               
-              </div>             
-               <div class="col-sm-5">
-               {{form.cod_mun_direccion|bootstrap_horizontal:'col-xs-5'}}   
-              </div>              
-            </div> 
-            
-            <div class="row">
-              <div class="col-sm-5">
-               {{form.cod_col_direccion|bootstrap_horizontal:'col-xs-5'}}               
-              </div>             
-               <div class="col-sm-5">
-               {{form.referencia|bootstrap_horizontal:'col-xs-5'}}   
+               {{form.firma|bootstrap_horizontal:'col-xs-5'}}   
               </div>              
             </div>  
-            
+
             <div class="row">
               <div class="col-sm-5">
-               {{form.casa|bootstrap_horizontal:'col-xs-5'}}               
+               {{form.nombre_completo|bootstrap_horizontal:'col-xs-5'}}                
               </div>             
                <div class="col-sm-5">
-               {{form.telefono_casa|bootstrap_horizontal:'col-xs-5'}}   
+               {{form.identidad|bootstrap_horizontal:'col-xs-5'}}   
               </div>              
-            </div>   <hr>      
+            </div>
+
+            <div class="row">
+              <div class="col-sm-5">
+               {{form.fecha_nacimiento|bootstrap_horizontal:'col-xs-5'}}                
+              </div>             
+               <div class="col-sm-5">
+               {{form.cod_pais_nacimiento|bootstrap_horizontal:'col-xs-5'}}   
+              </div>              
+            </div>    
+
+            <div class="row">
+              <div class="col-sm-5">
+               {{form.cod_depto_nacimiento|bootstrap_horizontal:'col-xs-5'}}                
+              </div>             
+               <div class="col-sm-5">
+               {{form.cod_municipio|bootstrap_horizontal:'col-xs-5'}}   
+              </div>              
+            </div>    
+
+
+            <div class="row">
+              <div class="col-sm-5">
+               {{form.lugar_nacimiento|bootstrap_horizontal:'col-xs-5'}}                
+              </div>             
+               <div class="col-sm-5">
+               {{form.nacionalidad|bootstrap_horizontal:'col-xs-5'}}   
+              </div>              
+            </div> <hr>               
+
+            
 
 
               <div class="col-sm-12">
-              <a href="{% url 'editar_1' solicitud.id_solicitud  %}" class="btn btn-primary btn-large"><i class="glyphicon glyphicon-arrow-left"></i> Atrás</a>
                  <button type="submit" class="btn btn-success btn-md pull-right " id='btn-guardar'> Siguiente <i class="glyphicon glyphicon-arrow-right" ></i></button>             
                
              </div>
@@ -142,7 +146,13 @@
 </div> 
 
 <script>
+  
+   $('#id_fecha_nacimiento').datepicker({
 
+      autoclose: true,
+      format: 'yyyy-mm-dd',
+      language: 'es',
+    });
 
 </script>
 
